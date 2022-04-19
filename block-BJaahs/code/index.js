@@ -32,38 +32,42 @@ let obj = {
         return index === obj.correctAnswerIndex;
     },
     getCorrectAnswer() {
-        return obj.options[correctAnswerIndex];
+        return obj.options[obj.correctAnswerIndex];
     }
 }
 
 // Use a function to create object
-function createObj() {
+function createObj(title, options, correctAnswerIndex) {
     let obj1 = {};
-    obj1.title = 'Where is the capital of Jordan';
-    obj1.options = ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'];
-    obj1.correctAnswerIndex = 1;
+    obj1.title = title;
+    obj1.options = options;
+    obj1.correctAnswerIndex = correctAnswerIndex;
     obj1.isAnswerCorrect = function(index) {
         return index === obj1.correctAnswerIndex;
     };
     obj1.getCorrectAnswer = function() {
-        return obj1.options[correctAnswerIndex];
+        return obj1.options[obj1.correctAnswerIndex];
     }
     return obj1;
 }
+
+let first = createObj('Where is the capital of Jordan', ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'], 1)
 
 
 // Convert the function to use `this` keyword
 
-function createObj() {
-    let obj1 = {};
-    obj1.title = 'Where is the capital of Jordan';
-    obj1.options = ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'];
-    obj1.correctAnswerIndex = 1;
-    obj1.isAnswerCorrect = function(index) {
+function createObj1(title, options, correctAnswerIndex) {
+    let obj2 = {};
+    obj2.title = title;
+    obj2.options = options;
+    obj2.correctAnswerIndex = correctAnswerIndex;
+    obj2.isAnswerCorrect = function(index) {
         return index === this.correctAnswerIndex;
     };
-    obj1.getCorrectAnswer = function() {
-        return this.options[correctAnswerIndex];
+    obj2.getCorrectAnswer = function() {
+        return this.options[this.correctAnswerIndex];
     }
-    return obj1;
+    return obj2;
 }
+
+let second = createObj1('Where is the capital of Jordan', ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'], 1)
