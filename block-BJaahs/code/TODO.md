@@ -28,4 +28,10 @@ const testData = {
   options: ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],
   correctAnswerIndex: 1,
 };
+
+const myData = {
+  title: "What's the correct word",
+  options: ['estrognes', 'esrtigens' ,'estrogens'],
+  correctAnswerIndex: 2,
+}
 ```
