@@ -184,8 +184,8 @@ console.log(person.print()); // Jay Person
 let name1 = person.print;
 let name2 = person.details;
 
-console.log(name1()); // " "
-console.log(name2.print()); //  Jay Details
+console.log(name1()); // ""
+console.log(name2.print()); //  error
 
 // --------
 
@@ -210,7 +210,7 @@ let object = {
         console.log('this inside of outerFn double()');
         console.log(this);
         return this.data.map(function(item) {
-            console.log(this); // undefined
+            console.log(this); // window
             return item * 2;
         });
     },
