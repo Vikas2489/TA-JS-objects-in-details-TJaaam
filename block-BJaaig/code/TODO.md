@@ -36,7 +36,7 @@ console.log(user.sayHello.call(user2, 'Hey')); // Hey Arya
 console.log(user.sayHello.apply(user2, ['Hey'])); // Hey Arya
 console.log(typeof user.sayHello.bind(user2)); // function
 console.log(user.sayHello.bind(user2)()); // Hello Arya
-console.log(userSayHello()); // error saying username is not defined
+console.log(userSayHello()); // Hello undefined
 console.log(typeof userSayHello.bind(user2)); // function
 console.log(userSayHello.bind(user2)()); // Hello Arya
 console.log(user3.sayHello()); // error saying sayHello is not defined.
