@@ -70,13 +70,13 @@ personStore.introduce = function() {
 
 function PersonConstructor() {
     this.greet = function() {
-        console.log("hello");
-    }
+            console.log("hello");
+        },
+        this.introduce = function() {
+            console.log(`Hey,my name is ${this.name}`)
+        }
 }
 
-// function PersonConstructor() {
-//     this.greet = personStore.greet.bind(this);
-// }
 
 // /********* Uncomment this line to test your work! *********/
 var simon = new PersonConstructor();
@@ -85,8 +85,7 @@ var simon = new PersonConstructor();
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromConstructor(name, age) {
-    let obj1 = new Object;
-    Object.setPrototypeOf(obj1, personStore);
+    let obj1 = new PersonConstructor();
     obj1.name = name;
     obj1.age = age;
     return obj1;
@@ -105,9 +104,6 @@ var mike = personFromConstructor('Mike', 30);
 //  `PersonConstructor` function that logs "Hi, my name is [name]".
 
 // add code here
-
-// already been added.
-
 
 mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
@@ -144,7 +140,6 @@ george.greet(); // -> Logs 'hello'
 class DeveloperClass extends PersonClass {
     constructor(name) {
         super(name);
-        this.name = name;
     }
     introduce() {
         console.log(`Hello World, my name is ${this.name}`);
@@ -185,14 +180,20 @@ var adminFunctionStore = Object.create(userFunctionStore);
 //  as objects of the `userFactory` class, but without copying each data field individually.
 
 function adminFactory(name, score) {
-    return userFactory.call(this, name, score);
+    let obj2 = userFactory(name, score);
+    Object.setPrototypeOf(obj2, adminFunctionStore);
+    obj2.type = "Admin";
+    obj2.score = score;
+    return obj2;
 }
 
 /* Put code here for a method called sharePublicMessage*/
-
+adminFunctionStore.sharePublicMessage = function() {
+    console.log("Welcome Users");
+}
 
 var adminFromFactory = adminFactory('Eva', 5);
 
 // /********* Uncomment these lines to test your work! *********/
-// adminFromFactory.sayType() // -> Logs "I am a Admin"
-// adminFromFactory.sharePublicMessage() // -> Logs "Welcome users!"
+adminFromFactory.sayType() // -> Logs "I am a Admin"
+adminFromFactory.sharePublicMessage() // -> Logs "Welcome users!"
