@@ -20,44 +20,37 @@
 
 class Stack {
     constructor() {
-        let newArr = [];
-        return newArr;
+        this.stack = [];
     }
 
     get length() {
-        return this.length;
+        return this.stack.length;
     }
 
     push(value) {
-        return this.push(value);
+        return this.stack.push(value);
     }
 
     pop() {
-        // let lastElm = this.length - 1;
-        // this.splice(lastElm);
-        // return this;
-        this.pop();
-        return this;
+        this.stack.pop();
+        return this.stack;
     }
     reverse() {
-        return this.reverse();
+        return this.stack.reverse();
     }
-}
 
-
-Array.prototype.peek = function(index = this.length - 1) {
-    return this[index];
-}
-
-Array.prototype.displayStack = function() {
-    return this.join(" ");
-}
-
-Array.prototype.isEmpty = function() {
-    if (this.length === 0) {
-        return true;
-    } else {
-        return false;
+    peek(index = this.stack.length - 1) {
+        return this.stack[index];
+    }
+    displayStack() {
+        return this.stack.join(" ");
+    }
+    isEmpty() {
+        if (this.stack.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -105,37 +98,32 @@ console.log(myStack.isEmpty()); // true
 
 class Queue {
     constructor() {
-        let newArr = [];
-        return newArr;
+        this.queue = [];
     }
     get length() {
-        return this.length;
+        return this.queue.length;
+    }
+
+    dequeue() {
+        return this.queue.shift();
+    }
+
+    enqueue(item) {
+        return this.queue.push(item);
+    }
+
+    displayQueue() {
+        return this.queue.join(" ");
+    }
+
+    peek(index = 0) {
+        return this.queue[index];
+    }
+
+    isEmpty() {
+        return !(this.queue.length > 0);
     }
 }
-
-Array.prototype.dequeue = function() {
-    return this.shift();
-}
-
-Array.prototype.enqueue = function(item) {
-    return this.push(item);
-}
-
-Array.prototype.displayQueue = function() {
-    return this.join(" ");
-}
-
-Array.prototype.peek = function(index = 0) {
-    return this[index];
-}
-
-
-
-
-
-
-
-
 
 // #### Test
 
