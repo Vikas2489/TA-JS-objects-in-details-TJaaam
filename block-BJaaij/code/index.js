@@ -14,12 +14,12 @@
 //  It will also change the `finishedDate` to be the `Date.now()` when this function is called.
 
 class Book {
-    constructor(title, category, author, isRead = false, finishedDate) {
+    constructor(title, category, author) {
         this.title = title;
         this.category = category;
         this.author = author;
-        this.isRead = isRead;
-        this.finishedDate = finishedDate;
+        this.isRead = false;
+        this.finishedDate = null;
     }
 
     markBookAsRead() {
@@ -49,12 +49,13 @@ class Book {
 
 
 class BookList {
-    constructor(arrOfBooks, indexOfReadBook) {
-        this.books = arrOfBooks;
-        this.indexOfReadBook = indexOfReadBook;
+    constructor() {
+        this.books = [];
+        this.indexOfReadBook = 0;
     }
     add(arrayOfBooks) {
-        this.books.concat(arrayOfBooks);
+        this.books = this.books.concat(arrayOfBooks);
+        return this.books;
     }
     getCurrentBook() {
         return this.books[this.indexOfReadBook];
