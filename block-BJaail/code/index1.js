@@ -2,76 +2,78 @@ class BookList {
     constructor(books = []) {
         this.books = books;
     }
-    add() {
-        let book = new Books(nameOfTheBook, author);
+    add(name, author, isbn) {
+        let book = new Books(name, author, isbn);
         this.books.push(book);
         this.createUI();
         return this.books.length;
     }
     delete(id) {
-        let index = this.books.findIndex((book) => book.isbn = id);
+        let index = this.books.findIndex(function(book) {
+            return book.isbn === id;
+        });
         this.books.splice(index, 1);
         this.createUI();
         return this.books.length;
     }
 
     createUI() {
+        document.querySelector(".table").innerHTML = "";
         this.books.forEach((book) => {
-            book.createUI();
+            let ui = book.createUI();
+            ui.querySelector(".delete-btn").addEventListener("click", () => {
+                // console.log(ui.querySelector(".isbn").innerText);
+                // console.log(typeof ui.querySelector(".isbn").innerText);
+                this.delete(Number(ui.querySelector(".isbn").innerText));
+            })
         })
     }
 }
 
 class Books {
-    constructor(nameOfTheBook, author) {
+    constructor(nameOfTheBook, author, isbn1 = Date.now()) {
         this.name = nameOfTheBook;
         this.author = author;
-        this.isbn = Date.now();
+        this.isbn = isbn1;
     }
     createUI() {
         let tr = document.createElement("tr");
+        tr.classList.add("flex");
         let td1 = document.createElement("td");
         td1.innerText = this.name;
+        td1.classList.add = "text-center";
         let td2 = document.createElement("td");
         td2.innerText = this.author;
+        td2.classList.add = "text-center";
         let td3 = document.createElement("td");
+        td3.className = "isbn";
+        td3.classList.add = "text-center";
         td3.innerText = this.isbn;
         let td4 = document.createElement("td");
+        td4.className = "delete-btn";
+        td4.classList.add = "text-center";
         td4.innerText = "❌";
         tr.append(td1, td2, td3, td4);
-        document.querySelector("table").append(tr);
+        document.querySelector(".table").append(tr);
         return tr;
     }
 }
 
-let allBook = new BookList();
 
-let title = document.getElementById("title");
-let author = document.getElementById("author");
-let isbn = document.getElementById("isbn");
-let button = document.querySelector(".btn");
+let library = new BookList();
 
+let form = document.querySelector("form");
+let title = form.elements.bookName;
+let isbn1 = form.elements.bookIsbn;
+let author1 = form.elements.bookAuthor;
 
-function getTitle(event) {
-    if (event.keycode === 13) {
-        console.log(event.target.innerText);
-        return event.target.innerText;
-    }
+function handleSubmit(event) {
+    event.preventDefault();
+    let name = title.value;
+    let author = author1.value;
+    let isbn = isbn1.value;
+    library.add(name, author, isbn);
 }
 
-title.addEventListener("keyup", () => {
-    if (event.keycode === 13)
-        return event.target.value;
-});
 
-function handleBtn(event) {
-    let bookObj = new Books();
-    console.log(bookObj);
-    if (title.innerText === "") {
-        return alert(`Title cannot be empty`);
-    } else if (author.innerText === "") {
-        return alert(`Title cannot be empty`);
-    }
-}
-
-button.addEventListener("click", handleBtn);
+form.addEventListener("submit", handleSubmit);

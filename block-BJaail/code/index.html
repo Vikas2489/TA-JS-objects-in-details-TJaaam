@@ -19,33 +19,30 @@
         <h1 class="text-center"><i class="fas fa-book-open"></i> My <span class="book">Book</span>List</h1>
     </header>
     <main class="container">
-        <div class="cnt-input-field">
-            <label for="title">Title</label>
-            <input type="text" id="title" placeholder="Enter The Title" class="block">
-        </div>
-        <div class="cnt-input-field">
-            <label for="author">Author</label>
-            <input type="text" id="author" placeholder="Enter Author's Name" class="block">
-        </div>
-        <div class="cnt-input-field">
-            <label for="isbn">ISBN</label>
-            <input type="text" id="isbn" placeholder="Enter ISBN" class="block">
-        </div>
-        <button class="btn">Add Book</button>
+        <form action="#">
+            <div class="cnt-input-field">
+                <label for="title">Title</label>
+                <input type="text" name="bookName" id="title" required placeholder="Enter The Title" class="block">
+            </div>
+            <div class="cnt-input-field">
+                <label for="author">Author</label>
+                <input type="text" name="bookAuthor" required id="author" placeholder="Enter Author's Name" class="block">
+            </div>
+            <div class="cnt-input-field">
+                <label for="isbn">ISBN</label>
+                <input type="text" id="isbn" name="bookIsbn" placeholder="Enter ISBN" class="block">
+            </div>
+            <button class="btn">Add Book</button>
+        </form>
         <table>
             <tr class="first-tr">
-                <th>Title</th>
-                <th>Author</th>
-                <th>ISBN</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>Silver Linning Playbook</td>
-                <td>James Peterson</td>
-                <td>123456789 </td>
-                <td>❌</td>
+                <th class="text-center">Title</th>
+                <th class="text-center">Author</th>
+                <th class="text-center">ISBN</th>
+                <th class="text-center">Delete</th>
             </tr>
         </table>
+        <table class="table"></table>
     </main>
 </body>
 <script src="./index1.js"></script>
