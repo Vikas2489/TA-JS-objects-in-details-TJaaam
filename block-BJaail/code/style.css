@@ -205,15 +205,33 @@ table {
 
 td,
 th {
-    text-align: left;
+    text-align: center;
     padding: 1rem 0;
+}
+
+td {
+    flex-basis: 25%;
+}
+
+.flex {
+    display: flex;
 }
 
 .first-tr {
     border-top: 1px solid rgb(219, 164, 164);
     border-bottom: 1px solid rgb(219, 164, 164);
     background-color: none;
+    display: flex;
 }
+
+th {
+    flex-basis: 25%;
+}
+
+
+/* .text-left {
+    text-align: left;
+} */
 
 
 /* td {
