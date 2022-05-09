@@ -165,6 +165,7 @@ let form = document.querySelector("form");
 let previous = document.querySelector(".btn-secondary");
 let next = document.querySelector(".btn-tertiary");
 let main = document.querySelector("main");
+let showResult = document.querySelector(".show-result");
 
 
 class Question {
@@ -214,9 +215,11 @@ class Quiz {
             previous.style.visibility = "hidden";
         } else if (this.activeIndex === this.questions.length - 1) {
             next.style.visibility = "hidden";
+            showResult.classList.remove("display-none");
         } else {
             previous.style.visibility = "visible";
             next.style.visibility = "visible";
+            showResult.classList.add("display-none");
         }
     }
 
@@ -270,12 +273,21 @@ class Quiz {
     }
 }
 
-let quiz = new Quiz();
+function init() {
+    let quiz = new Quiz();
 
-next.addEventListener("click", quiz.nextQuestion.bind(quiz));
-previous.addEventListener("click", quiz.previousQuestion.bind(quiz));
+    next.addEventListener("click", quiz.nextQuestion.bind(quiz));
+    previous.addEventListener("click", quiz.previousQuestion.bind(quiz));
 
-quiz.add("What is the capital of India ?", ["Delhi", "Rajpur", "Kanpur", "Pardesh"], 0);
-quiz.add("Test", [1, 2, 3, 4], 0);
-quiz.add("Test1234", [1, 1234562, 23453, 4], 2);
-quiz.createUI();
+    quiz.add("What is the capital of India ?", ["Delhi", "Rajpur", "Kanpur", "Pardesh"], 0);
+    quiz.add("Test", [1, 2, 3, 4], 0);
+    quiz.add("Test1234", [1, 1234562, 23453, 4], 2);
+    quiz.createUI();
+
+    showResult.addEventListener("click", () => {
+        alert(`Your score ${quiz.score}`);
+    })
+}
+
+
+init();
